@@ -1,6 +1,6 @@
 {
   "name": "observables-rjs",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Observable implementation in vanilla ES6 JavaScript compatible with RxJs api.",
   "main": "src/index.js",
   "scripts": {

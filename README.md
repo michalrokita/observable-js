@@ -1,4 +1,4 @@
-# Observable.js [![Observables.rjs](https://github.com/michalrokita/observable-js/actions/workflows/npm-publish.yml/badge.svg)](https://github.com/michalrokita/observable-js/actions/workflows/npm-publish.yml)
+# Observables.rjs [![Observable.js](https://github.com/michalrokita/observable-js/actions/workflows/npm-publish.yml/badge.svg)](https://github.com/michalrokita/observable-js/actions/workflows/npm-publish.yml)
 Observable implementation in vanilla ES6 JavaScript compatible with RxJs api.
 
 ## Usage

@@ -1,6 +1,10 @@
 # Observables.rjs [![Observable.js](https://github.com/michalrokita/observable-js/actions/workflows/npm-publish.yml/badge.svg)](https://github.com/michalrokita/observable-js/actions/workflows/npm-publish.yml)
 Observable implementation in vanilla ES6 JavaScript compatible with RxJs api.
 
+## Installation
+You can pull the code from here or by npm
+```npm install observables-rjs```
+
 ## Usage
 
 **Example.** The following is an Observable that pushes the values 1, 2, 3 immediately (synchronously) when subscribed, and the value 

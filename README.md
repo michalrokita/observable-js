@@ -1,4 +1,4 @@
-# Observable.js [![Observable.js](https://github.com/michalrokita/observable-js/actions/workflows/npm-publish.yml/badge.svg)](https://github.com/michalrokita/observable-js/actions/workflows/npm-publish.yml)
+# Observable.js [![Observables.rjs](https://github.com/michalrokita/observable-js/actions/workflows/npm-publish.yml/badge.svg)](https://github.com/michalrokita/observable-js/actions/workflows/npm-publish.yml)
 Observable implementation in vanilla ES6 JavaScript compatible with RxJs api.
 
 ## Usage
@@ -6,7 +6,7 @@ Observable implementation in vanilla ES6 JavaScript compatible with RxJs api.
 **Example.** The following is an Observable that pushes the values 1, 2, 3 immediately (synchronously) when subscribed, and the value 
 4 after one second has passed since the subscribe call, then completes:
 ```js
-import Observable from 'observable-js';
+import Observable from 'observables-rjs';
 
 const observable = new Observable(subscriber => {
   subscriber.next(1)
@@ -36,7 +36,7 @@ The code above executes as such on console:
 ### Unsubscribing from the observable
 You can always unsubscribe from any further observable events by calling ```.unsubscribe()``` on the object returned by the ```.subscribe()``` method.
 ```js
-import Observable from 'observable-js';
+import Observable from 'observables-rjs';
 
 const observable = new Observable(subscriber => {
   subscriber.next(1)
@@ -64,7 +64,7 @@ The code above executes as such on console:
 When an error occurs inside a observable or subscriber.error() will be called, observable will be immediately unsubscribed by the observer and, 
 if present, error hook will be called
 ```js
-import Observable from 'observable-js';
+import Observable from 'observables-rjs';
 
 const observable = new Observable(subscriber => {
   subscriber.next(1)

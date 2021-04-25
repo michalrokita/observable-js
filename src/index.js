@@ -29,6 +29,7 @@ export default class Observable {
      * @returns {{next: (*|(function())), complete: (*|(function())), error: (*|(function()))}|*}
      */
     static #parseObserver(observer) {
+
         if (observer.length === 1 && typeof observer[0] !== 'function') {
             return {
                 next: Observable.#getIfFnEmptyFnOtherwise(observer[0].next),
@@ -37,24 +38,30 @@ export default class Observable {
             }
         }
 
+        if (!Array.isArray(observer)) {
+            observer = []
+        }
+
+        const [next, complete, error] = [0, 1, 2].map(hookIndex => Observable.#getIfFnEmptyFnOtherwise(observer[hookIndex]))
+
         return {
-            next: Observable.#getIfFnEmptyFnOtherwise(observer[0]),
-            complete: Observable.#getIfFnEmptyFnOtherwise(observer[1]),
-            error: Observable.#getIfFnEmptyFnOtherwise(observer[2])
+            next,
+            complete,
+            error
         }
     }
 
-    /**
-     *
-     * @param observer
-     * @returns {{unsubscribe: (function(): boolean), wrappedObserver: {next: (function(...[*])), complete: (function(...[*])), error: (function(...[*]))}}}
-     */
-    #wrapObserver(observer) {
+    #createSubscription(observer) {
+        let subscription
         let subscribed = true
-        observer = Observable.#parseObserver(observer)
 
-        return {
-            unsubscribe: () => subscribed = false,
+        const unsubscribe = () => {
+            subscribed = false
+            subscription = null
+        }
+
+        subscription = {
+            unsubscribe,
             wrappedObserver: {
                 next: (...args) => subscribed && observer.next.call(null, ...args),
                 complete: (...args) => {
@@ -71,6 +78,19 @@ export default class Observable {
                 }
             }
         }
+
+        return subscription
+    }
+
+    /**
+     *
+     * @param observer
+     * @returns {{unsubscribe: (function(): boolean), wrappedObserver: {next: (function(...[*])), complete: wrappedObserver.complete, error: wrappedObserver.error}}}
+     */
+    #wrapObserver(observer) {
+        observer = Observable.#parseObserver(observer)
+
+        return this.#createSubscription(observer)
     }
 
     /**

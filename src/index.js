@@ -107,9 +107,9 @@ export default class Observable {
             wrappedObserver.error.call(null, exception)
         }
 
-        return {
+        return Object.freeze({
             unsubscribe
-        }
+        })
     }
 
 }
